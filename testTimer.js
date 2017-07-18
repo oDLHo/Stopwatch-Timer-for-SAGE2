@@ -128,6 +128,13 @@ var testTimer = SAGE2_App.extend( {
 				.text("Start")
 
 
+      this.startText = this.buttonRow.append("text")
+        .attr("transform", function(d, i) { return "translate("+ $($('.timerText')[0]).width()/15 +","+ $($('.timerText')[0]).height()/2 +")"; })
+        .attr("fill", "#ffffff")
+        .style("font-size", "100%")
+        .text("Start")
+
+
 			this.pauseButton = this.buttonRow.append('rect')
 				.attr("id", "pauseButton")
 				.attr("fill", "#000000")
@@ -136,6 +143,13 @@ var testTimer = SAGE2_App.extend( {
 				.attr("height", $($('.buttonRow')[0]).height())
 				.attr("transform", function(d, i) { return "translate("+ $($('.timerText')[0]).width()/3 +","+ 0 +")"; })
 				.on("click" , function(){ _this.pauseTimer();})
+
+
+      this.pauseText = this.buttonRow.append("text")
+        .attr("transform", function(d, i) { return "translate("+ $($('.timerText')[0]).width()/2.6 +","+ $($('.timerText')[0]).height()/2 +")"; })
+        .attr("fill", "#ffffff")
+        .style("font-size", "100%")
+        .text("Pause")
 
 
 			this.stopButton = this.buttonRow
@@ -149,12 +163,11 @@ var testTimer = SAGE2_App.extend( {
 				.on("click" , function(){ _this.stopTimer();})
 				.text("Stop")
 
-				this.pauseButton
-					.append("image")
-					.attr("width", $('#pauseButton').width())
-					.attr("height", $('#pauseButton').height())
-					.attr("xlink:href",  _this.resrcPath + "img/pause.png" );
-
+      this.stopText = this.buttonRow.append("text")
+        .attr("transform", function(d, i) { return "translate("+ $($('.timerText')[0]).width()/1.36 +","+ $($('.timerText')[0]).height()/2 +")"; })
+        .attr("fill", "#ffffff")
+        .style("font-size", "100%")
+        .text("Stop")
 		},
 
 		drawTimer: function(){
@@ -232,8 +245,25 @@ var testTimer = SAGE2_App.extend( {
 				.append("rect")
 				.attr("fill", "#00ff12")
 				.attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
-				.attr("height", $($('.adjustRow')[0]).height())
+				.attr("height", $($('.adjustRow')[0]).height()/2)
 				.attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ 0 +")"; })
+        .on("click", function() { _this.increaseHour(_this) } )
+
+
+      this.decreaseMinuteAdjustBox = this.hourGroup
+        .append("rect")
+        .attr("fill", "#ff0000")
+        .attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
+        .attr("height", $($('.adjustRow')[0]).height()/2)
+        .attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ $($('.adjustRow')[0]).height()/2 +")"; })
+        .on("click", function() { _this.decreaseHour(_this) } )
+
+
+      this.hourText = this.hourGroup.append("text")
+        .attr("transform", function(d, i) { return "translate("+ $($('.adjustRow')[0]).width()/25 +","+ $($('.adjustRow')[0]).height()/1.5 +")"; })
+        .attr("fill", "#ffffff")
+        .style("font-size", "80%")
+        .text("Hour")
 
 
 			this.minuteGroup = this.adjustRow
@@ -252,12 +282,28 @@ var testTimer = SAGE2_App.extend( {
 				.attr("height", $($('.adjustRow')[0]).height())
 
 
-			this.adjustBox = this.minuteGroup
+			this.increaseMinuteAdjustBox = this.minuteGroup
 				.append("rect")
 				.attr("fill", "#00ff12")
 				.attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
-				.attr("height", $($('.adjustRow')[0]).height())
+				.attr("height", $($('.adjustRow')[0]).height()/2)
 				.attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ 0 +")"; })
+        .on("click", function() { _this.increaseMinute(_this) } )
+
+      this.decreaseMinuteAdjustBox = this.minuteGroup
+  			.append("rect")
+  			.attr("fill", "#ff0000")
+  			.attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
+  			.attr("height", $($('.adjustRow')[0]).height()/2)
+  			.attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ $($('.adjustRow')[0]).height()/2 +")"; })
+        .on("click", function() { _this.decreaseMinute(_this) } )
+
+
+      this.minuteText = this.minuteGroup.append("text")
+        .attr("transform", function(d, i) { return "translate("+ $($('.adjustRow')[0]).width()/50 +","+ $($('.adjustRow')[0]).height()/1.5 +")"; })
+        .attr("fill", "#ffffff")
+        .style("font-size", "80%")
+        .text("Minute")
 
 
 			this.secondGroup = this.adjustRow
@@ -276,12 +322,29 @@ var testTimer = SAGE2_App.extend( {
 				.attr("height", $($('.adjustRow')[0]).height())
 
 
-			this.adjustBox = this.secondGroup
+			this.increaseSecondAdjustBox = this.secondGroup
 				.append("rect")
 				.attr("fill", "#00ff12")
 				.attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
-				.attr("height", $($('.adjustRow')[0]).height())
+				.attr("height", $($('.adjustRow')[0]).height()/2)
 				.attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ 0 +")"; })
+        .on("click", function() { _this.increaseSecond(_this) } )
+
+
+      this.decreaseSecondAdjustBox = this.secondGroup
+  			.append("rect")
+  			.attr("fill", "#ff0000")
+  			.attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
+  			.attr("height", $($('.adjustRow')[0]).height()/2)
+  			.attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ $($('.adjustRow')[0]).height()/2 +")"; })
+        .on("click", function() { _this.decreaseSecond(_this) } )
+
+
+      this.secondText = this.secondGroup.append("text")
+        .attr("transform", function(d, i) { return "translate("+ $($('.adjustRow')[0]).width()/50 +","+ $($('.adjustRow')[0]).height()/1.5 +")"; })
+        .attr("fill", "#ffffff")
+        .style("font-size", "80%")
+        .text("Second")
 
 
 			this.buttonRow = d3.select(this.element)
@@ -304,6 +367,14 @@ var testTimer = SAGE2_App.extend( {
 				.text("Start")
 
 
+      this.startText = this.buttonRow.append("text")
+        .attr("transform", function(d, i) { return "translate("+ $($('.timerText')[0]).width()/15 +","+ $($('.buttonRow')[0]).height()/2 +")"; })
+        .attr("fill", "#ffffff")
+        .style("font-size", "100%")
+        .on("click" , function(){ _this.startTimer();})
+        .text("Start")
+
+
 			this.pauseButton = this.buttonRow.append('rect')
 				.attr("id", "pauseButton")
 				.attr("fill", "#000000")
@@ -312,6 +383,15 @@ var testTimer = SAGE2_App.extend( {
 				.attr("height", $($('.buttonRow')[0]).height())
 				.attr("transform", function(d, i) { return "translate("+ $($('.timerText')[0]).width()/3 +","+ 0 +")"; })
 				.on("click" , function(){ _this.pauseTimer();})
+
+
+      this.pauseText = this.buttonRow.append("text")
+        .attr("transform", function(d, i) { return "translate("+ $($('.timerText')[0]).width()/2.6 +","+ $($('.buttonRow')[0]).height()/2 +")"; })
+        .attr("fill", "#ffffff")
+        .style("font-size", "100%")
+        .on("click" , function(){ _this.pauseTimer();})
+        .text("Pause")
+
 
 
 			this.stopButton = this.buttonRow
@@ -325,11 +405,14 @@ var testTimer = SAGE2_App.extend( {
 				.on("click" , function(){ _this.stopTimer();})
 				.text("Stop")
 
-				this.pauseButton
-					.append("image")
-					.attr("width", $('#pauseButton').width())
-					.attr("height", $('#pauseButton').height())
-					.attr("xlink:href",  _this.resrcPath + "img/pause.png" );
+
+      this.stopText = this.buttonRow.append("text")
+        .attr("transform", function(d, i) { return "translate("+ $($('.timerText')[0]).width()/1.36 +","+ $($('.buttonRow')[0]).height()/2 +")"; })
+        .attr("fill", "#ffffff")
+        .style("font-size", "100%")
+        .on("click" , function(){ _this.stopTimer();})
+        .text("Stop")
+
 
 		},
 
@@ -370,41 +453,93 @@ var testTimer = SAGE2_App.extend( {
 
 		adjustHour: function(_this){
 				if(_this.layout == "stopWatch"){ _this.hours++; }
-				else if(_this.layout == "countDown"){ _this.hours--; }
+				else if(_this.layout == "countDown"){
+          if( _this.hours > 0 ){
+            _this.hours--;
+          }
+        }
 		},
 
 		adjustMinute: function(_this){
 			if(_this.layout == "stopWatch"){
 				if(_this.minutes < 59){
 					_this.minutes++;
-				}else if(_this.layout == "countDown"){
-					_this.minutes = 0;
-					_this.adjustHour(_this);
+				}else{
+          _this.minute = 0;
+          _this.adjustHour(_this);
+        }
+			}else if(_this.layout == "countDown"){
+        if(_this.minutes >= 0){
+					_this.minutes--;
+					if(_this.minutes == -1){
+            if(_this.hours == 0){
+              _this.minutes = 0;
+            }else{
+						  _this.minutes = 59;
+						  _this.adjustHour(_this);
+            }
+					}
 				}
-			}else {
-
 			}
 		},
 
 		adjustSecond: function(_this){
 			if(_this.layout == "stopWatch"){
+
 				if(_this.seconds < 59){
 					_this.seconds++;
 				}else{
 					_this.seconds = 0;
 					_this.adjustMinute(_this);
 				}
-			}else if(_this.layout == "countDown"){
+
+			} else if(_this.layout == "countDown"){
+
 				if(_this.seconds >= 0){
 					_this.seconds--;
 					if(_this.seconds == -1){
-						_this.seconds = 59;
-						_this.adjustMinute(_this);
+            if(_this.hours == 0 && _this.minutes == 0){
+              _this.seconds = 0;
+              _this.stopTimer();
+            }else{
+						  _this.seconds = 59;
+						  _this.adjustMinute(_this);
+            }
 					}
 				}
 			}
 
 		},
+
+    increaseHour: function(_this){
+      _this.hours += 1
+      _this.changeTimerText(_this);
+    },
+
+    increaseMinute: function(_this){
+      _this.minutes += 1
+      _this.changeTimerText(_this);
+    },
+
+    increaseSecond: function(_this){
+      _this.seconds += 1
+      _this.changeTimerText(_this);
+    },
+
+    decreaseHour: function(_this){
+      _this.hours -= 1
+      _this.changeTimerText(_this);
+    },
+
+    decreaseMinute: function(_this){
+      _this.minutes -= 1
+      _this.changeTimerText(_this);
+    },
+
+    decreaseSecond: function(_this){
+      _this.seconds -= 1
+      _this.changeTimerText(_this);
+    },
 
 		changeTimerText: function(_this){
 			var hourFormat = ("0" + _this.hours).slice(-2);
@@ -419,4 +554,5 @@ var testTimer = SAGE2_App.extend( {
 			_this.seconds = 0;
 			_this.time.text("00:00:00")
 		}
+
 });
