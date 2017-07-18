@@ -1,6 +1,6 @@
 {
-	"main_script": "testTimer.js",
-	"icon": "",
+	"main_script": "stopwatch.js",
+	"icon": "./img/stopwatch.png",
 	"width": 800,
 	"height": 600,
 	"resize": "free",
@@ -11,10 +11,9 @@
 		"remainingTime": 0,
 		"running": false
 	},
-	"title": "testTimer",
+	"title": "Stopwatch",
 	"version": "1.0.0",
 	"description": "Timer",
 	"keywords": [ "application", "Timer", "clock" ],
-	"author": "",
-	"license": "SAGE2-Software-License"
+	"author": "Jirayu Roungsuriyaviboon"
 }

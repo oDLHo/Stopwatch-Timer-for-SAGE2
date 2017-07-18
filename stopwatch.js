@@ -1,4 +1,5 @@
-var testTimer = SAGE2_App.extend( {
+var stopwatch = SAGE2_App.extend(
+  
     init: function(data) {
         // data: contains initialization parameters, such as `x`, `y`, `width`, `height`, and `date`
         this.SAGE2Init('div',data);
@@ -9,9 +10,7 @@ var testTimer = SAGE2_App.extend( {
 				this.seconds = 0;
 				this.layout = "stopWatch"
         this.resizeEvents = "continuous";//see below for other options
-				var _this = this;
 				this.drawStopWatch()
-				// this.changeTimer()
     },
 
     //load function allows application to begin with a particular state.  Needed for remote site collaboration.
@@ -24,9 +23,12 @@ var testTimer = SAGE2_App.extend( {
     },
 
     resize: function(date) {
-        // to do:  may be a super class resize
-        // or your resize code here
-        this.refresh(date); //redraw after resize
+      if(this.layout == "stopWatch"){
+        this.drawStopWatch();
+      }else {
+        this.drawTimer();
+      }
+      this.changeTimerText(this);
     },
 
     event: function(type, position, user, data, date) {
