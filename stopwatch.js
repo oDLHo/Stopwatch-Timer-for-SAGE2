@@ -1,5 +1,5 @@
-var stopwatch = SAGE2_App.extend(
-  
+var stopwatch = SAGE2_App.extend({
+
     init: function(data) {
         // data: contains initialization parameters, such as `x`, `y`, `width`, `height`, and `date`
         this.SAGE2Init('div',data);
