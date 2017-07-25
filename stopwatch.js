@@ -231,34 +231,50 @@ var stopwatch = SAGE2_App.extend({
 			this.hourGroup = this.adjustRow
 				.append("g")
 				.attr("class", "hourAdjustment")
-				.attr("fill", "#ff0000")
-				.style("background-color", "#6dff41")
 
 
 			this.hourBox = this.hourGroup
 				.append("rect")
 				.attr("class", "hourBox")
-				.attr("fill", "#ff0000")
+				.attr("fill", "#000000")
 				.attr("width", $($('.adjustRow')[0]).width()/3.5)
 				.attr("height", $($('.adjustRow')[0]).height())
 
 
 			this.hourAdjustBox = this.hourGroup
 				.append("rect")
-				.attr("fill", "#00ff12")
+				.attr("fill", "#000000")
 				.attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
 				.attr("height", $($('.adjustRow')[0]).height()/2)
 				.attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ 0 +")"; })
-        .on("click", function() { _this.increaseHour(_this) } )
+        .on("click", function() { if (!_this.state.running) { _this.increaseHour(_this) } } )
 
 
       this.decreaseMinuteAdjustBox = this.hourGroup
         .append("rect")
-        .attr("fill", "#ff0000")
+				.attr("fill", "#000000")
         .attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
         .attr("height", $($('.adjustRow')[0]).height()/2)
         .attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ $($('.adjustRow')[0]).height()/2 +")"; })
-        .on("click", function() { _this.decreaseHour(_this) } )
+        .on("click", function() { if (!_this.state.running) { _this.decreaseHour(_this) } } )
+
+
+      this.hourUp = this.hourGroup
+        .append("image")
+        .attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
+				.attr("height", $($('.adjustRow')[0]).height()/2)
+        .attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ 0 +")"; })
+        .attr("xlink:href", this.resrcPath + "/img/up.png")
+        .on("click", function() { if (!_this.state.running) { _this.increaseHour(_this) } } )
+
+
+      this.hourDown = this.hourGroup
+        .append("image")
+        .attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
+        .attr("height", $($('.adjustRow')[0]).height()/2)
+        .attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ $($('.adjustRow')[0]).height()/2 +")"; })
+        .attr("xlink:href", this.resrcPath + "/img/down.png")
+        .on("click", function() { if (!_this.state.running) { _this.decreaseHour(_this) } } )
 
 
       this.hourText = this.hourGroup.append("text")
@@ -271,35 +287,51 @@ var stopwatch = SAGE2_App.extend({
 			this.minuteGroup = this.adjustRow
 				.append("g")
 				.attr("class", "minuteAdjustment")
-				.attr("fill", "#eb00ff")
-				.style("background-color", "#6dff41")
 				.attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3 +","+ 0 +")"; })
 
 
 			this.minuteBox = this.minuteGroup
 				.append("rect")
 				.attr("class", "minuteBox")
-				.attr("fill", "#2be7db")
+				.attr("fill", "#000000")
 				.attr("width", $($('.adjustRow')[0]).width()/3.5)
 				.attr("height", $($('.adjustRow')[0]).height())
 
 
 			this.increaseMinuteAdjustBox = this.minuteGroup
 				.append("rect")
-				.attr("fill", "#00ff12")
+				.attr("fill", "#000000")
 				.attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
 				.attr("height", $($('.adjustRow')[0]).height()/2)
 				.attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ 0 +")"; })
-        .on("click", function() { _this.increaseMinute(_this) } )
+        .on("click", function() { if (!_this.state.running) { _this.increaseMinute(_this) } } )
+
 
       this.decreaseMinuteAdjustBox = this.minuteGroup
   			.append("rect")
-  			.attr("fill", "#ff0000")
+				.attr("fill", "#000000")
   			.attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
   			.attr("height", $($('.adjustRow')[0]).height()/2)
   			.attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ $($('.adjustRow')[0]).height()/2 +")"; })
-        .on("click", function() { _this.decreaseMinute(_this) } )
+        .on("click", function() { if (!_this.state.running) { _this.decreaseMinute(_this) } } )
 
+
+      this.minuteUp = this.minuteGroup
+        .append("image")
+        .attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
+        .attr("height", $($('.adjustRow')[0]).height()/2)
+        .attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ 0 +")"; })
+        .attr("xlink:href", this.resrcPath + "/img/up.png")
+        .on("click", function() { if (!_this.state.running) { _this.increaseMinute(_this) } } )
+
+
+      this.minuteDown = this.minuteGroup
+        .append("image")
+        .attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
+        .attr("height", $($('.adjustRow')[0]).height()/2)
+        .attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ $($('.adjustRow')[0]).height()/2 +")"; })
+        .attr("xlink:href", this.resrcPath + "/img/down.png")
+        .on("click", function() { if (!_this.state.running) { _this.decreaseMinute(_this) } } )
 
       this.minuteText = this.minuteGroup.append("text")
         .attr("transform", function(d, i) { return "translate("+ $($('.adjustRow')[0]).width()/50 +","+ $($('.adjustRow')[0]).height()/1.5 +")"; })
@@ -311,35 +343,51 @@ var stopwatch = SAGE2_App.extend({
 			this.secondGroup = this.adjustRow
 				.append("g")
 				.attr("class", "secondAdjustment")
-				.attr("fill", "#ff0000")
-				.style("background-color", "#6dff41")
 				.attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/1.5+","+ 0 +")"; })
 
 
 			this.secondBox = this.secondGroup
 				.append("rect")
 				.attr("class", "secondBox")
-				.attr("fill", "#ff0000")
+				.attr("fill", "#000000")
 				.attr("width", $($('.adjustRow')[0]).width()/3.5)
 				.attr("height", $($('.adjustRow')[0]).height())
 
 
 			this.increaseSecondAdjustBox = this.secondGroup
 				.append("rect")
-				.attr("fill", "#00ff12")
+				.attr("fill", "#000000")
 				.attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
 				.attr("height", $($('.adjustRow')[0]).height()/2)
 				.attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ 0 +")"; })
-        .on("click", function() { _this.increaseSecond(_this) } )
+        .on("click", function() { if (!_this.state.running) { _this.increaseSecond(_this) } } )
 
 
       this.decreaseSecondAdjustBox = this.secondGroup
   			.append("rect")
-  			.attr("fill", "#ff0000")
+				.attr("fill", "#000000")
   			.attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
   			.attr("height", $($('.adjustRow')[0]).height()/2)
   			.attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ $($('.adjustRow')[0]).height()/2 +")"; })
-        .on("click", function() { _this.decreaseSecond(_this) } )
+        .on("click", function() { if (!_this.state.running) { _this.decreaseSecond(_this) } } )
+
+
+      this.secondUp = this.secondGroup
+        .append("image")
+        .attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
+  			.attr("height", $($('.adjustRow')[0]).height()/2)
+        .attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ 0 +")"; })
+        .attr("xlink:href", this.resrcPath + "/img/up.png")
+        .on("click", function() { if (!_this.state.running) { _this.increaseSecond(_this) } } )
+
+
+      this.secondDown = this.secondGroup
+        .append("image")
+        .attr("width", ($($('.adjustRow')[0]).width()/3) - ($($('.adjustRow')[0]).width()/3.5))
+        .attr("height", $($('.adjustRow')[0]).height()/2)
+        .attr("transform", function() { return "translate("+ $($('.adjustRow')[0]).width()/3.5 +","+ $($('.adjustRow')[0]).height()/2 +")"; })
+        .attr("xlink:href", this.resrcPath + "/img/down.png")
+        .on("click", function() { if (!_this.state.running) { _this.decreaseSecond(_this) } } )
 
 
       this.secondText = this.secondGroup.append("text")
@@ -529,18 +577,24 @@ var stopwatch = SAGE2_App.extend({
     },
 
     decreaseHour: function(_this){
-      _this.hours -= 1
-      _this.changeTimerText(_this);
+      if (_this.hours > 0) {
+        _this.hours -= 1;
+        _this.changeTimerText(_this);
+      }
     },
 
     decreaseMinute: function(_this){
-      _this.minutes -= 1
-      _this.changeTimerText(_this);
+      if (_this.minutes > 0) {
+        _this.minutes -= 1;
+        _this.changeTimerText(_this);
+      }
     },
 
     decreaseSecond: function(_this){
-      _this.seconds -= 1
-      _this.changeTimerText(_this);
+      if (_this.seconds > 0) {
+        _this.seconds -= 1;
+        _this.changeTimerText(_this);
+      }
     },
 
 		changeTimerText: function(_this){
